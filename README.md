@@ -86,3 +86,8 @@ docker compose up --build
 
 ・docker停止コマンド
 docker compose stop
+
+# ★依存関係注意★
+<dependency></dependency>は
+必ず<dependencies></dependencies>の中に記載する
+そうしないと依存関係が追加されない
