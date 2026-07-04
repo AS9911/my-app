@@ -1,8 +1,0 @@
-mybatis:
-  mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.akiyama.backend.practice.domain.entity
-
-jwt:
-  secret: "YOUR_BASE64_SECRET"
-  expiration: 3600000          # Access Token（1時間）
-  refresh-expiration: 604800000 # Refresh Token（7日）
