@@ -1,55 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<!-- Mavenプロジェクト全体を表すルートタグ。 
+     プロジェクト情報、依存関係、プラグイン、ビルド設定-->
+<!-- xmlns：このXMLはMaven POMの名前空間を使用することを宣言 -->
+<!-- xmlns:xsi：xsiという接頭辞を利用できるようにする -->
+<!-- xsi:schemaLocation；Maven POMのXMLスキーマ（文法）を指定 -->
+<project 
+    xmlns="http://maven.apache.org/POM/4.0.0" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<!-- POM（Project Object Model）の仕様バージョン 
+	     POM=「このプロジェクトはどのような構成で、どのライブラリを利用し、どのようにビルドするか」を定義する設計書-->
 	<modelVersion>4.0.0</modelVersion>
+	<!-- 親POMを指定。 -->
 	<parent>
+	    <!-- プロジェクトの所属グループ。(Javaのパッケージ名のようなもの) -->
 		<groupId>org.springframework.boot</groupId>
+		<!-- 成果物（JARやWAR）の名前 -->
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.5.15</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<!-- プロジェクトのバージョン -->
+		<version>4.1.0</version>
+		<relativePath/>
 	</parent>
+
 	<groupId>com.akiyama</groupId>
 	<artifactId>backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>backend</name>
+
 	<description/>
+
 	<url/>
+
 	<licenses>
 		<license/>
 	</licenses>
+
 	<developers>
 		<developer/>
 	</developers>
+
 	<scm>
 		<connection/>
 		<developerConnection/>
 		<tag/>
 		<url/>
 	</scm>
+
+	<!-- 共通設定を書く場所 -->
 	<properties>
 		<java.version>21</java.version>
 	</properties>
+	<!-- 依存ライブラリを書く場所 -->
 	<dependencies>
+
 		<dependency>
+		    <!-- ライブラリの提供元 -->
 			<groupId>org.springframework.boot</groupId>
+			<!-- ライブラリ名 -->
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
 			<artifactId>mybatis-spring-boot-starter</artifactId>
@@ -59,53 +89,123 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
+			<!-- 利用する範囲 
+			     ・compile　 通常利用（デフォルト）
+				 ・test　　　テストだけ
+				 ・runtime　 実行時のみ
+				 ・provided　コンパイル時のみ必要　-->
 			<scope>runtime</scope>
+			<!--他プロジェクトからこのライブラリを利用するときに、自動で依存関係に含めないようにする設定 -->
 			<optional>true</optional>
 		</dependency>
+
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
 			<artifactId>mybatis-spring-boot-starter-test</artifactId>
 			<version>3.0.5</version>
 			<scope>test</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
+
+		<!-- MapStructを利用するには -->
+		<!-- MapStructライブラリ＆MapStructのコード生成ツール（アノテーションプロセッサ）の2つが必要 -->
+		<!-- MapStructを利用するには -->
 		<dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
             <version>1.6.3</version>
+			<!-- コンパイルには必要だけど、実行時には不要 
+			     ⇒コンパイルには必要だが成果物には含めない指定-->
+			<scope>provided</scope>
         </dependency>
-	</dependencies>
 
+        <dependency>
+            <groupId>org.terasoluna.gfw</groupId>
+            <artifactId>terasoluna-gfw-common</artifactId>
+            <version>5.9.0.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.dbunit</groupId>
+            <artifactId>dbunit</artifactId>
+            <version>3.0.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.springtestdbunit</groupId>
+            <artifactId>spring-test-dbunit</artifactId>
+            <version>1.3.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- JWT API -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+            <version>0.12.7</version>
+        </dependency>
+
+        <!-- JWT実装 -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <version>0.12.7</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- JWTとJSON変換(Jackson) -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId>
+            <version>0.12.7</version>
+            <scope>runtime</scope>
+        </dependency>
+
+	</dependencies>
+    
+	<!-- ビルド方法を設定 -->
 	<build>
+	    <!-- 使用するMavenプラグイン -->
 		<plugins>
+		    <!-- プラグイン1つを表す -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<!-- プラグイン固有の設定 -->
 				<configuration>
+				    <!-- 成果物（JARなど）に含めたくないライブラリを指定 -->
 					<excludes>
+					    <!-- 除外対象を1つ指定 
+						     この場合：Lombokを実行JARに含めない-->
 						<exclude>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
@@ -117,15 +217,23 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<!-- プラグインをいつ実行するか -->
 				<executions>
+				<!-- 1回分の実行設定 -->
 					<execution>
+					    <!-- 実行設定の名前 -->
 						<id>default-compile</id>
+						<!-- Mavenライフサイクルのどの段階で実行するか指定 -->
 						<phase>compile</phase>
+						<!-- 実際に実行する処理 -->
 						<goals>
 							<goal>compile</goal>
 						</goals>
 						<configuration>
+						    <!-- アノテーションプロセッサを登録 -->
 							<annotationProcessorPaths>
+							    <!-- 使用するアノテーションプロセッサを1つ登録 
+								     この場合：Lombokをアノテーションプロセッサとして実行してくださいという意味-->
 								<path>
 									<groupId>org.projectlombok</groupId>
 									<artifactId>lombok</artifactId>
@@ -145,6 +253,16 @@
 									<groupId>org.projectlombok</groupId>
 									<artifactId>lombok</artifactId>
 								</path>
+                                <!-- コンパイル時にMapstructの実装部分を自動生成する必要があり、
+								　　　それをするにはここにパスを書く必要がある-->
+								<!-- Processorとは
+                                     Javaをコンパイルするときにソースコードを解析し、
+									 新しいJavaコードを生成するプログラム-->
+								<path>
+                                    <groupId>org.mapstruct</groupId>
+                                    <artifactId>mapstruct-processor</artifactId>
+                                    <version>1.6.3</version>
+                                </path>
 							</annotationProcessorPaths>
 						</configuration>
 					</execution>
