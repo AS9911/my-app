@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.akiyama.backend.domain.mapper.UserMapper">
+    
+    <select id="findByUserId" resultType="com.akiyama.backend.domain.entity.User">
+        SELECT 
+            id,
+            userid AS userId,
+            username,
+            password,
+            role
+        FROM 
+            users
+        WHERE
+            userid = #{userId}
+    </select>
+
+</mapper>

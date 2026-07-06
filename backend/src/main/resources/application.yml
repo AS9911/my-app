@@ -1,0 +1,13 @@
+mybatis:
+  # mapper-locations: classpath:/mapper/**/*.xml
+  mapper-locations: classpath*:mapper/**/*.xml
+  type-aliases-package: com.akiyama.backend.domain.entity
+  configuration:
+    map-underscore-to-camel-case: true
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/my_app
+    username: admin
+    password: 8b2brksk1582SQL
+    driver-class-name: org.postgresql.Driver

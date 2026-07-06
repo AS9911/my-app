@@ -1,5 +1,10 @@
 # my-app
-フロント：React　サーバー：SpringBoot　での開発です。
+フロント：React　+ Material UI
+サーバー：SpringBoot
+
+# フロントエンド　ライブラリ
+npm install axios
+npm install react-router-dom
 
 # git
 GitHubでリモートリポジトリに開発用ブランチ作成
